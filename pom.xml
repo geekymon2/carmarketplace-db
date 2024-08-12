@@ -37,7 +37,15 @@
         <artifactId>liquibase-maven-plugin</artifactId>
         <version>${liquibase.version}</version>
         <configuration>
-          <propertyFile>src/main/resources/liquibase.properties</propertyFile>
+          <changeLogFile>src/main/resources/db/changelog/db.changelog-master.mysql.sql</changeLogFile>
+          <outputChangeLogFile>src/main/resources/db/changelog/db.changelog-master.mysql.sql</outputChangeLogFile>
+          <url>jdbc:mysql://localhost:3306/carinfodbci</url>
+          <username>mon2</username>
+          <password>${CARINFO_DB_PASSWORD}</password>
+          <driver>com.mysql.cj.jdbc.Driver</driver>
+          <referenceUrl>jdbc:mysql://localhost:3306/carinfodbdev</referenceUrl>
+          <referenceUsername>mon2</referenceUsername>
+          <referencePassword>${CARINFO_DB_PASSWORD}</referencePassword>
         </configuration>
       </plugin>
     </plugins>
