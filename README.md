@@ -23,4 +23,4 @@ This is the car marketplace database repo. It uses liquibase to manage the datab
 - mvn liquibase:update -Puserdb
 
 ## Generating a migration script and applying changes manually
-
+- mvn liquibase:updateSQL -Puserdb
