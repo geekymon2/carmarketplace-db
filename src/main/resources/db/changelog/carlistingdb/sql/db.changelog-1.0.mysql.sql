@@ -1,0 +1,5 @@
+-- liquibase formatted sql
+
+-- changeset mon2:1723525354946-1
+CREATE TABLE car (doors INT NOT NULL, odometer INT NOT NULL, price DOUBLE NOT NULL, seats INT NOT NULL, year_build INT NOT NULL, id BIGINT AUTO_INCREMENT NOT NULL, `description` VARCHAR(255) NULL, make VARCHAR(255) NULL, model VARCHAR(255) NULL, body_type ENUM('SEDAN', 'SUV', 'HATCHBACK', 'PERFORMANCE', 'COMMERCIAL', 'UTE') NULL, transmission ENUM('AUTOMATIC', 'MANUAL') NULL, CONSTRAINT PK_CAR PRIMARY KEY (id));
+

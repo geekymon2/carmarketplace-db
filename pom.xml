@@ -11,6 +11,7 @@
     <liquibase.version>4.29.1</liquibase.version>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
+    <changelog.base.path>src/main/resources/db/changelog/</changelog.base.path>
   </properties>
   <dependencies>
     <dependency>
@@ -37,17 +38,57 @@
         <artifactId>liquibase-maven-plugin</artifactId>
         <version>${liquibase.version}</version>
         <configuration>
-          <changeLogFile>src/main/resources/db/changelog/db.changelog-master.mysql.sql</changeLogFile>
-          <outputChangeLogFile>src/main/resources/db/changelog/db.changelog-master.mysql.sql</outputChangeLogFile>
-          <url>jdbc:mysql://localhost:3306/carinfodbci</url>
-          <username>mon2</username>
-          <password>${CARINFO_DB_PASSWORD}</password>
-          <driver>com.mysql.cj.jdbc.Driver</driver>
-          <referenceUrl>jdbc:mysql://localhost:3306/carinfodbdev</referenceUrl>
-          <referenceUsername>mon2</referenceUsername>
-          <referencePassword>${CARINFO_DB_PASSWORD}</referencePassword>
+          <changeLogFile>${change.log.file}</changeLogFile>
+          <url>${db.target.url}</url>
+          <username>${db.target.username}</username>
+          <password>${db.target.password}</password>
+          <driver>${db.driver}</driver>
+          <referenceUrl>${db.source.url}</referenceUrl>
+          <referenceUsername>${db.source.username}</referenceUsername>
+          <referencePassword>${db.source.password}</referencePassword>
         </configuration>
       </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>carinfodb</id>
+      <properties>
+        <db.target.url>jdbc:mysql://localhost:3306/carinfodbci</db.target.url>
+        <db.target.username>${CARINFO_DB_USER}</db.target.username>
+        <db.target.password>${CARINFO_DB_PASSWORD}</db.target.password>
+        <db.source.url>jdbc:mysql://localhost:3306/carinfodbdev</db.source.url>
+        <db.source.username>${CARINFO_DB_USER}</db.source.username>
+        <db.source.password>${CARINFO_DB_PASSWORD}</db.source.password>
+        <db.driver>com.mysql.cj.jdbc.Driver</db.driver>
+        <change.log.file>${changelog.base.path}/carinfodb/db.changelog-master.yaml</change.log.file>
+      </properties>
+    </profile>
+    <profile>
+      <id>carlistingdb</id>
+      <properties>
+        <db.target.url>jdbc:mysql://localhost:3306/carlistingdbci</db.target.url>
+        <db.target.username>${CARLISTING_DB_USER}</db.target.username>
+        <db.target.password>${CARLISTING_DB_PASSWORD}</db.target.password>
+        <db.source.url>jdbc:mysql://localhost:3306/carlistingdbdev</db.source.url>
+        <db.source.username>${CARLISTING_DB_USER}</db.source.username>
+        <db.source.password>${CARLISTING_DB_PASSWORD}</db.source.password>
+        <db.driver>com.mysql.cj.jdbc.Driver</db.driver>
+        <change.log.file>${changelog.base.path}/carlisitingdb/db.changelog-master.yaml</change.log.file>
+      </properties>
+    </profile>
+    <profile>
+      <id>userdb</id>
+      <properties>
+        <db.target.url>jdbc:mysql://localhost:3306/userdbci</db.target.url>
+        <db.target.username>${USER_DB_USER}</db.target.username>
+        <db.target.password>${USER_DB_PASSWORD}</db.target.password>
+        <db.source.url>jdbc:mysql://localhost:3306/userdbdev</db.source.url>
+        <db.source.username>${USER_DB_USER}</db.source.username>
+        <db.source.password>${USER_DB_PASSWORD}</db.source.password>
+        <db.driver>com.mysql.cj.jdbc.Driver</db.driver>
+        <change.log.file>${changelog.base.path}/userdb/db.changelog-master.yaml</change.log.file>
+      </properties>
+    </profile>
+  </profiles>
 </project>
