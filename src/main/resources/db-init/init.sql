@@ -12,6 +12,3 @@ CREATE DATABASE IF NOT EXISTS userdbdev
 CREATE DATABASE IF NOT EXISTS carinfodbci
 CREATE DATABASE IF NOT EXISTS carlistingdbci
 CREATE DATABASE IF NOT EXISTS userdbci
--- create tables
-
--- create data
