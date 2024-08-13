@@ -46,6 +46,7 @@
           <referenceUrl>${db.source.url}</referenceUrl>
           <referenceUsername>${db.source.username}</referenceUsername>
           <referencePassword>${db.source.password}</referencePassword>
+          <referenceDriver>${db.driver}</referenceDriver>
         </configuration>
       </plugin>
     </plugins>
