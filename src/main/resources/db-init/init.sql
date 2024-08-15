@@ -3,7 +3,12 @@ CREATE USER 'mon2'@'%' IDENTIFIED BY <password>;
 GRANT ALL PRIVILEGES ON *.* TO 'user'@'%' WITH GRANT OPTION; -- TODO: this needs to be improved to only grant the minimum required.
 FLUSH PRIVILEGES;
 
--- create schemas for local development
+-- create schemas for local
+CREATE DATABASE IF NOT EXISTS carinfodblocal
+CREATE DATABASE IF NOT EXISTS carlistingdblocal
+CREATE DATABASE IF NOT EXISTS userdblocal
+
+-- create schemas for development
 CREATE DATABASE IF NOT EXISTS carinfodbdev
 CREATE DATABASE IF NOT EXISTS carlistingdbdev
 CREATE DATABASE IF NOT EXISTS userdbdev
